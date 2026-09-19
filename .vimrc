@@ -171,7 +171,9 @@ endif
 " GIT
 " ==========================================
 " Show the current Git branch
-function! GitBranch()
+let g:git_branch = ''
+
+function! UpdateGitBranch() abort
     let l:file_dir = expand('%:p:h')
 
     if empty(l:file_dir)
@@ -183,14 +185,25 @@ function! GitBranch()
         \ ' branch --show-current 2>/dev/null'
         \ )
 
-    let l:branch = substitute(l:branch, '\n\+$', '', '')
+    let g:git_branch = substitute(l:branch, '\n\+$', '', '')
 
-    if empty(l:branch)
-        return ''
+    if !empty(g:git_branch)
+        let g:git_branch = 'branch: ' . g:git_branch
     endif
 
-    return 'branch: ' . l:branch
+    redrawstatus
 endfunction
+
+
+augroup git_statusline
+    autocmd!
+    autocmd BufEnter * call UpdateGitBranch()
+    autocmd DirChanged * call UpdateGitBranch()
+augroup END
+
+set laststatus=2
+set statusline=%f\ %h%m%r%=%{g:git_branch}\ \ %l:%c
+
 
 " ==========================================
 " REPLACE
@@ -209,9 +222,6 @@ function! ReplaceText() abort
 endfunction
 
 nnoremap <silent> <leader>R :call ReplaceText()<CR>
-
-set laststatus=2
-set statusline=%f\ %h%m%r%=%{GitBranch()}\ \ %l:%c
 
 " ==========================================
 " CHARACTER ENCODING
