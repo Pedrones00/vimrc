@@ -29,16 +29,16 @@
 
 ## Netrw File Explorer
 
-| Key       | Action                        |
-| --------- | ----------------------------- |
-| `<Enter>` | Open file or directory        |
-| `v`       | Open file in vertical split   |
-| `s`       | Open file in horizontal split |
-| `%`       | Create a new file             |
-| `d`       | Create a new directory        |
-| `R`       | Rename file or directory      |
-| `D`       | Delete file or directory      |
-| `q`       | Close file explorer           |
+| Key               | Action                        |
+| ------------------| ----------------------------- |
+| `<Enter>`         | Open file or directory        |
+| `v`               | Open file in vertical split   |
+| `s`               | Open file in horizontal split |
+| `<Leader>n`       | Create a new file             |
+| `d`               | Create a new directory        |
+| `<Leader>rn`      | Rename file or directory      |
+| `<Leader>rd`               | Delete file or directory      |
+| `q`                | Close file explorer           |
 
 ---
 
