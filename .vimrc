@@ -224,6 +224,37 @@ endfunction
 nnoremap <silent> <leader>R :call ReplaceText()<CR>
 
 " ==========================================
+" CREATE FILE
+" ==========================================
+function! NewFile() abort
+    let l:name = input('New file: ')
+
+    if empty(l:name)
+        return
+    endif
+
+    let l:root = getcwd()
+
+    if &filetype ==# 'netrw'
+        let l:root = get(b:, 'netrw_curdir', getcwd())
+        wincmd p
+    endif
+
+    let l:path = fnamemodify(l:root . '/' . l:name, ':p')
+
+    execute 'edit ' . fnameescape(l:path)
+
+    if !filereadable(l:path)
+        write
+    endif    
+endfunction
+
+nnoremap <silent> <leader>n :call NewFile()<CR>
+
+nmap <silent> <leader>rn R
+nmap <silent> <leader>rd D
+
+" ==========================================
 " CHARACTER ENCODING
 " ==========================================
 set encoding=utf-8
