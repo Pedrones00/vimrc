@@ -156,12 +156,3 @@
 | `:wqa`  | Save all and quit   |
 
 ---
-
-## Insert Mode Completion
-
-| Key     | Action              |
-| ------- | ------------------- |
-| `<C-n>` | Next completion     |
-| `<C-p>` | Previous completion |
-
-> `<C-p>` is mapped to **Find Files** in Normal mode, but remains the native completion command in Insert mode.
